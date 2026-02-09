@@ -7,40 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-body {
+body{
   background:#2f3b36;
-  font-family:'Libre Baskerville', serif;
-  overflow:hidden;
+  font-family:'Libre Baskerville',serif;
   height:100vh;
+  overflow:hidden;
 }
 
 /* ================= ENVELOPE ================= */
-#envelope {
+#envelope{
   position:absolute;
-  top:50%; left:50%;
+  top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:320px; height:200px;
+  width:340px;height:220px;
   cursor:pointer;
   z-index:10;
 }
-#env-body {
-  width:100%; height:100%;
-  background:black;
+#env-body{
+  width:100%;height:100%;
+  background:#000;
   border-radius:8px;
 }
-#env-flap {
+#env-flap{
   position:absolute;
-  top:0; left:0;
-  width:0; height:0;
-  border-left:160px solid transparent;
-  border-right:160px solid transparent;
-  border-bottom:100px solid #111;
+  top:0;left:0;
+  width:0;height:0;
+  border-left:170px solid transparent;
+  border-right:170px solid transparent;
+  border-bottom:110px solid #111;
 }
-#env-text {
+#env-text{
   position:absolute;
-  top:38%;
+  top:40%;
   width:100%;
   text-align:center;
   color:white;
@@ -48,7 +48,7 @@ body {
 }
 
 /* ================= POPUP ================= */
-#popup {
+#popup{
   position:absolute;
   top:20%;
   left:50%;
@@ -61,77 +61,89 @@ body {
   display:none;
   z-index:20;
 }
-#popup button {
+#popup button{
   margin:10px;
   padding:10px 25px;
-  font-family:inherit;
   border:none;
   cursor:pointer;
   background:#7fbf9c;
+  font-family:inherit;
 }
 
-/* ================= CHAMPAGNE ================= */
-#champagne {
+/* ================= FIREWORKS ================= */
+.firework{
   position:absolute;
-  top:45%; left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  transition:0.8s ease;
-  z-index:9;
+  width:6px;height:6px;
+  border-radius:50%;
+  animation:explode 1.4s ease-out forwards;
 }
-#champagne svg {
-  width:130px;
-}
-#champagne span {
-  display:block;
-  text-align:center;
-  font-size:2.5em;
-  color:#f5d76e;
+@keyframes explode{
+  from{transform:scale(1);opacity:1}
+  to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}
 }
 
 /* ================= LETTER ================= */
-#letter {
+#letter{
   position:absolute;
-  top:50%; left:50%;
+  top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:720px;
   max-width:90%;
   height:82%;
   background:#f9f6ef;
-  padding:50px;
-  border-radius:12px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.4);
-  overflow-y:auto;
+  padding:60px;
   display:none;
   z-index:5;
+  overflow-y:auto;
   line-height:1.8;
-  font-size:1.15em;
+  font-size:1.1em;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
-#letter::before {
+
+/* lined paper */
+#letter::before{
   content:'';
   position:absolute;
   inset:0;
   background:repeating-linear-gradient(
     to bottom,
-    rgba(0,0,0,0.04),
-    rgba(0,0,0,0.04) 1px,
+    rgba(0,0,0,.05),
+    rgba(0,0,0,.05) 1px,
     transparent 1px,
     transparent 28px
   );
   pointer-events:none;
 }
 
-/* ================= HEARTS ================= */
-.heart {
+/* weed leaf border */
+#letter::after{
+  content:'';
   position:absolute;
-  width:45px;
-  height:45px;
-  z-index:1;
-  animation:pulse 2s infinite alternate;
-  clip-path: path("M30 55 C10 35 0 25 0 15 A15 15 0 0 1 30 15 A15 15 0 0 1 60 15 C60 25 50 35 30 55 Z");
+  inset:-18px;
+  border:14px solid transparent;
+  border-image:url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">\
+<path d="M20 0 C25 12 40 15 30 22 35 35 20 30 10 35 15 22 0 15 15 12 Z" fill="%232ecc71"/>\
+</svg>') 30 round;
+  pointer-events:none;
 }
-@keyframes pulse {
-  from { transform:scale(1); }
-  to { transform:scale(1.25); }
+
+/* ================= RED HEARTS ================= */
+.heart{
+  position:absolute;
+  width:50px;
+  height:50px;
+  background:red;
+  z-index:1;
+  clip-path:path("M30 55 C10 35 0 25 0 15 A15 15 0 0 1 30 15 A15 15 0 0 1 60 15 C60 25 50 35 30 55 Z");
+  animation:floatUp 6s linear infinite;
+  opacity:0.8;
+}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:translateY(-900px) scale(1);}
 }
 </style>
 </head>
@@ -153,16 +165,6 @@ body {
   <br><br>
   <button onclick="openLetter()">Yes</button>
   <button onclick="openLetter()">No</button>
-</div>
-
-<!-- Champagne -->
-<div id="champagne">
-<svg viewBox="0 0 120 300">
-  <rect x="45" y="60" width="30" height="160" rx="12" fill="#1b5e20"/>
-  <rect x="50" y="20" width="20" height="50" rx="6" fill="#cfae70"/>
-  <polygon points="45,20 75,20 60,0" fill="#e6c97a"/>
-</svg>
-<span>21</span>
 </div>
 
 <!-- Letter -->
@@ -224,35 +226,51 @@ P.S. I learnt coding for you, ungrateful shit :)
 </div>
 
 <script>
-const env = document.getElementById('envelope');
-const popup = document.getElementById('popup');
-const champagne = document.getElementById('champagne');
-const letter = document.getElementById('letter');
+const env=document.getElementById('envelope');
+const popup=document.getElementById('popup');
+const letter=document.getElementById('letter');
 
-env.onclick = () => popup.style.display='block';
+env.onclick=()=>popup.style.display='block';
 
 function openLetter(){
   popup.style.display='none';
   env.style.opacity=0;
   setTimeout(()=>{
     env.remove();
-    champagne.style.transform='translate(-50%,-50%) scale(1)';
+    spawnFireworks();
     setTimeout(()=>{
-      champagne.style.display='none';
       letter.style.display='block';
+      autoScroll(letter);
       spawnHearts();
-    },1200);
-  },800);
+    },800);
+  },600);
+}
+
+function autoScroll(el){
+  let y=0;
+  setInterval(()=>{ y+=0.3; el.scrollTop=y; },30);
+}
+
+function spawnFireworks(){
+  for(let i=0;i<80;i++){
+    let f=document.createElement('div');
+    f.className='firework';
+    f.style.left='50%';
+    f.style.top='50%';
+    f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    f.style.setProperty('--x',(Math.random()*400-200)+'px');
+    f.style.setProperty('--y',(Math.random()*400-200)+'px');
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1400);
+  }
 }
 
 function spawnHearts(){
-  const colors = ['red','green','blue'];
-  for(let i=0;i<24;i++){
-    let h = document.createElement('div');
+  for(let i=0;i<40;i++){
+    let h=document.createElement('div');
     h.className='heart';
-    h.style.left = 10 + Math.random()*80 + '%';
-    h.style.top  = 10 + Math.random()*80 + '%';
-    h.style.background = colors[Math.floor(Math.random()*colors.length)];
+    h.style.left=Math.random()*100+'%';
+    h.style.top=Math.random()*100+'%';
     document.body.appendChild(h);
   }
 }
