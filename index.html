@@ -127,28 +127,6 @@ body{
 </svg>') 30 round;
   pointer-events:none;
 }
-
-/* ================= RED HEARTS ================= */
-.heart{
-  position:absolute;
-  width:50px;
-  height:50px;
-  background:red;
-  z-index:1;
-  clip-path:path("M30 55 C10 35 0 25 0 15 A15 15 0 0 1 30 15 A15 15 0 0 1 60 15 C60 25 50 35 30 55 Z");
-  animation:floatUp 6s linear infinite, rotateHeart linear infinite;
-  opacity:0.8;
-  transform:translateX(-50%);
-}
-@keyframes floatUp{
-  0%{transform:translateY(0) scale(1);}
-  50%{transform:scale(1.1);}
-  100%{transform:translateY(-900px) scale(1);}
-}
-@keyframes rotateHeart{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
-}
 </style>
 </head>
 
@@ -222,7 +200,7 @@ And if someday you feel as though we can try again, I will be right here waiting
 
 <br><br>
 
-<strong>Happy Birthday Love ❤️</strong>
+<strong>Happy Birthday Love ❤️I love you!</strong>
 
 <br><br>
 
@@ -245,7 +223,6 @@ function openLetter(){
     setTimeout(()=>{
       letter.style.display='block';
       autoScroll(letter);
-      spawnHearts();
     },800);
   },600);
 }
@@ -266,20 +243,6 @@ function spawnFireworks(){
     f.style.setProperty('--y',(Math.random()*400-200)+'px');
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),1400);
-  }
-}
-
-function spawnHearts(){
-  for(let i=0;i<40;i++){
-    let h=document.createElement('div');
-    h.className='heart';
-    // keep hearts fully on screen, leave 5%-95% horizontal and vertical padding
-    h.style.left=(5 + Math.random()*90)+'%';
-    h.style.top=(5 + Math.random()*90)+'%';
-    h.style.animationDuration=(5+Math.random()*3)+'s';
-    h.style.animationDelay=(Math.random()*5)+'s';
-    h.style.transform+=` rotate(${Math.random()*360}deg) translateX(-50%)`;
-    document.body.appendChild(h);
   }
 }
 </script>
