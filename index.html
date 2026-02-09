@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background:#2f3b36;
+  font-family:'Cormorant Garamond', serif;
+  overflow:hidden;
+  height:100vh;
+}
+
+/* ================= ENVELOPE ================= */
+#envelope {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:320px; height:200px;
+  cursor:pointer;
+  z-index:10;
+}
+
+#env-body {
+  width:100%; height:100%;
+  background:black;
+  border-radius:8px;
+}
+
+#env-flap {
+  position:absolute;
+  top:0; left:0;
+  width:0; height:0;
+  border-left:160px solid transparent;
+  border-right:160px solid transparent;
+  border-bottom:100px solid #111;
+}
+
+#env-text {
+  position:absolute;
+  top:38%;
+  width:100%;
+  text-align:center;
+  color:white;
+  letter-spacing:2px;
+  font-size:1.1em;
+}
+
+/* ================= POPUP ================= */
+#popup {
+  position:absolute;
+  top:20%;
+  left:50%;
+  transform:translateX(-50%);
+  background:white;
+  padding:25px;
+  width:520px;
+  border-radius:12px;
+  text-align:center;
+  display:none;
+  z-index:20;
+}
+
+#popup button {
+  margin:10px;
+  padding:10px 25px;
+  font-family:inherit;
+  border:none;
+  cursor:pointer;
+  background:#7fbf9c;
+  font-size:1em;
+}
+
+/* ================= CHAMPAGNE ================= */
+#champagne {
+  position:absolute;
+  top:40%; left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  text-align:center;
+  z-index:9;
+  transition:0.8s ease;
+}
+
+#champagne img {
+  width:120px;
+}
+
+#champagne span {
+  display:block;
+  font-size:3em;
+  color:#f5d76e;
+  margin-top:10px;
+  text-align:center;
+}
+
+/* ================= LETTER ================= */
+#letter {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;
+  max-width:90%;
+  height:80%;
+  background:#f9f6ef;
+  padding:50px;
+  border-radius:12px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+  overflow-y:auto;
+  display:none;
+  z-index:5;
+  line-height:1.8em;
+  font-size:1.2em;
+}
+
+/* Vintage lines */
+#letter::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.05) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+  pointer-events:none;
+}
+
+/* ================= HEARTS ================= */
+.heart {
+  position:absolute;
+  width:50px;
+  height:50px;
+  background:red;
+  clip-path: path("M30 55 C10 35 0 25 0 15 A15 15 0 0 1 30 15 A15 15 0 0 1 60 15 C60 25 50 35 30 55 Z");
+  z-index:1;
+  animation:pulse 2s infinite alternate, floatHeart 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform:scale(1); }
+  to { transform:scale(1.2); }
+}
+
+@keyframes floatHeart {
+  from { transform:translateY(0); }
+  to { transform:translateY(-15px); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Envelope -->
+<div id="envelope">
+  <div id="env-body"></div>
+  <div id="env-flap"></div>
+  <div id="env-text">CLICK HERE</div>
+</div>
+
+<!-- Popup -->
+<div id="popup">
+  You have received an anonymous letter from someone who wishes she could have given this to you in person.
+  <br><br>
+  Would you like to open it?
+  <br><br>
+  <button onclick="openLetter()">Yes</button>
+  <button onclick="openLetter()">No</button>
+</div>
+
+<!-- Champagne -->
+<div id="champagne">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Champagne_bottle.png" alt="Champagne Bottle">
+  <span>21</span>
+</div>
+
+<!-- Letter -->
+<div id="letter">
+I promised god I wouldn’t ask him for anything this year, but today I make an exception. I pray you get everything you’re working so damn hard for. I hope every obstacle, every difficulty, every pain is erased from your life. I hope every sacrifice, every difficulty, and every struggle pays you triple fold back. You’re the best thing that ever happened to me sudharshan, and I’ll never forgive myself for losing that. But no one is more grateful for this day than me, because if it wasn’t for this day, you would’ve never came into my life. Special shoutout to Aunty Maggie for bringing her pretty princess into this world - Standing ovation because no one’s topping that.
+
+Thank you for being you, for always listening to me yap about irrelevant shit. Thank you for always being there. Thank you for giving me the happiest 4 months of my life.
+
+Oh and this is for you 🏆
+For making me retire at such a young age.
+I’ll never fully be able to explain how happy you make me. I’ll never be able to explain how empty it feels when I don’t speak to you, or that sinking fear that some day in the future there’s gonna be a day where we won’t even be talking, it’ll be like we never even met. Except we did, which is why that sinking terror haunts me every fucking day. And I’m telling you this because I want you to know how much you’re fucking worth brah. Making ME scared of LOSING a person, oh wait 🏆 here’s another one!!! Thank you for knowing me so well. Yea it’s annoying asf but the fact that it didn’t even take you that long to know me to the extent that you did, that’s a lot for me. I am so so proud of you! I’m proud of how you never give up, of how you know what you want and nothing is gonna stop you from achieving that. I’m proud of how ambitious you are, how smart you are. I’m proud of how you never let any thing bring you down, no matter how many things go wrong I proud of how you don’t give up. One of the many things I love about you is how ambitious you are. You’re a guy with a plan. You don’t find that in a lot of people nowadays. I’m also proud of your parents. They raised you right darling, and honestly I’ll forever be thankful to them because if it weren’t for them I would never have met my match 🥲 I used to think muruga sent you just for me and me only. I used to think it was meant to be, that he planned the whole thing like that. I just never thought that you being my last would mean you not being in my life - but still being the last. It’s you! And it’s always gonna be you. You’re everything I didn’t even know I wanted or needed. And that is what makes it so damn different. It would be different if I’d be saying you’re everything I’ve looked for. I haven’t looked for anything and yet you’re what I wanted without me even knowing I wanted it. I actually did think that love letters and all that crap was lame, I still do actually. But from you literally the smallest things just lights my entire life up. God knows how you just filled that empty space in my life I didn’t even know needed filling. But you’re fucking amazing! Words will never be enough for me to tell you how much I appreciate your existence. You know I hate birthdays, but I love your birthday so so much because one of muruga’s best creations was made that day.
+
+And if someday you feel as though we can try again, I will be right here waiting for you.
+
+Happy Birthday Love ❤️
+
+P.S - I learnt code for you, you ungrateful shit 😘
+</div>
+
+<script>
+const env = document.getElementById('envelope');
+const popup = document.getElementById('popup');
+const champagne = document.getElementById('champagne');
+const letter = document.getElementById('letter');
+
+env.onclick = () => popup.style.display='block';
+
+function openLetter(){
+  popup.style.display='none';
+  env.style.opacity=0;
+  setTimeout(()=>{
+    env.remove();
+    champagne.style.transform='translate(-50%,-50%) scale(1)';
+    setTimeout(()=>{
+      champagne.style.display='none';
+      letter.style.display='block';
+      autoScroll(letter);
+      spawnHearts();
+    },1200);
+  },800);
+}
+
+function autoScroll(el){
+  let y=0;
+  setInterval(()=>{ y+=0.3; el.scrollTop=y; },30);
+}
+
+function spawnHearts(){
+  const colors = ['red','green','blue'];
+  for(let i=0;i<15;i++){
+    let h = document.createElement('div');
+    h.className='heart';
+    h.style.left=Math.random()*90+'%';
+    h.style.top=Math.random()*90+'%';
+    h.style.background = colors[Math.floor(Math.random()*colors.length)];
+    document.body.appendChild(h);
+  }
+}
+</script>
+</body>
+</html>
